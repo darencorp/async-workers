@@ -1,0 +1,43 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="uk-width-1-1">
+  <div class="uk-flex uk-flex-column uk-flex-middle">
+    <div class="uk-margin-top">
+      <button class="uk-button">Avtive: {{object.keys(bars).length}}</button>
+      <div *ngIf="object.keys(bars).length > 0" uk-dropdown="pos: bottom-justify; mode: click">
+        <div class="uk-width-1-1 uk-margin-small-top">
+          <div *ngFor="let item of bars | keyvalue" class="uk-text-small">
+            <div class="uk-text-small uk-text-muted">
+              {{item.key}}
+            </div>
+            <progress class="uk-progress" [value]="item.value" max="100"></progress>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="object.keys(bars).length == 0" uk-dropdown="pos: bottom-justify; mode: click">
+        <div class="uk-text-center uk-text-muted">
+          No active tasks!
+        </div>
+      </div>
+    </div>
+    <hr class="uk-width-1-1">
+    <div uk-height-viewport="offset-bottom: 40"
+         class="uk-width-1-1 uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+      <div class="uk-flex uk-flex-column uk-flex-middle">
+        <div class="uk-h4">
+          Add new task
+        </div>
+        <div class="uk-flex uk-margin-top">
+          <form #appForm="ngForm">
+            <input ngModel name="time" class="uk-width-5-6 uk-input" type="number" placeholder="Sec.">
+          </form>
+          <div>
+            <div (click)="addTask(appForm)" class="uk-button uk-button-primary">Add</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,2 @@
+FROM node:slim
+RUN npm i -g @angular/cli@1.7.1

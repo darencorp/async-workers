@@ -1,0 +1,31 @@
+version: "3.2"
+services:
+  flask:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - '.:/app/src'
+      - './static:/app/src/static'
+    command: python /app/src/app.py
+  celery:
+    build: .
+    volumes:
+      - '.:/app/src'
+    command: bash -c "cd /app/src && celery -A config worker"
+    depends_on:
+      - redis
+      - sockets
+  redis:
+    image: redis:latest
+  sockets:
+    build: socket_server/.
+    ports:
+      - 8001:8001
+  front:
+    build:
+      dockerfile: Front
+      context: .
+    volumes:
+      - './static:/app'
+    command: bash -c "cd /app/js && ng build --watch"
