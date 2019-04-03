@@ -2,13 +2,13 @@ import time
 
 import socketio
 
-from config import app, SOCKET_HOST, SOCKET_PORT
+from config import app, SOCKET_HOST, SOCKET_PORT, SOCKET_PATH
 
 
 @app.task
 def process_task(data):
     sio = socketio.Client()
-    sio.connect(f'http://{SOCKET_HOST}:{SOCKET_PORT}')
+    sio.connect(f'http://{SOCKET_HOST}:{SOCKET_PORT}', socketio_path=SOCKET_PATH)
     sleep_time = data
     result = 2
 

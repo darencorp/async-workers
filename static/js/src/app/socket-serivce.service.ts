@@ -13,7 +13,7 @@ export class SocketService {
   private socket;
 
   public initSocket(): void {
-    this.socket = socketIo('http://localhost:8001');
+    this.socket = socketIo('http://localhost:8000', { path: '/messages/socket.io' });
   }
 
   public onMessage(): Observable<any> {

@@ -5,7 +5,8 @@ BROKER_HOST = 'redis'
 BROKER_PORT = 6379
 
 SOCKET_HOST = 'sockets'
-SOCKET_PORT = 8001
+SOCKET_PORT = 8000
+SOCKET_PATH = '/messages/socket.io'
 
 STATIC_FOLDER = 'static'
 TEMPLATES_FOLDER = 'templates'

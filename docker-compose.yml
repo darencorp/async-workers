@@ -1,9 +1,17 @@
 version: "3.2"
 services:
-  flask:
-    build: .
+  nginx:
+    image: nginx
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf'
     ports:
       - 8000:8000
+    depends_on:
+      - flask
+      - front
+      - sockets
+  flask:
+    build: .
     volumes:
       - '.:/app/src'
       - './static:/app/src/static'
@@ -20,8 +28,6 @@ services:
     image: redis:latest
   sockets:
     build: socket_server/.
-    ports:
-      - 8001:8001
   front:
     build:
       dockerfile: Front

@@ -1,13 +1,14 @@
 var app = require('http').createServer(),
-    io = require('socket.io')(app);
+    io = require('socket.io')(app, {
+        path: '/messages/socket.io'
+    });
 
-console.log("Listen 8001 ...")
-app.listen(8001);
+console.log("Listen 8000 ...")
+app.listen(8000);
 
-rooms = []
+rooms = [];
 
 io.on('connect', function (socket) {
-
     rooms.forEach(room => {
         socket.join(room);
     });
@@ -25,6 +26,7 @@ io.on('connect', function (socket) {
         io.in(data).clients(function (error, sockets) {
             sockets.forEach(socketId => io.sockets.sockets[socketId].leave(data));
         });
+
         rooms.splice(rooms.indexOf(data), 1);
     });
 });
