@@ -1,6 +1,2 @@
 FROM node:slim
-WORKDIR /app
-COPY ./static/js/. /app
-RUN npm i
 RUN npm i -g @angular/cli@1.7.1
-CMD ng build --watch
