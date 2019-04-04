@@ -32,6 +32,3 @@ services:
     build:
       dockerfile: Front
       context: .
-    volumes:
-      - './static:/app'
-    command: bash -c "cd /app/js && ng build --watch"
