@@ -2,7 +2,7 @@
 <div class="uk-width-1-1">
   <div class="uk-flex uk-flex-column uk-flex-middle">
     <div class="uk-margin-top">
-      <button class="uk-button">Avtive: {{object.keys(bars).length}}</button>
+      <div class="uk-button uk-button-text">Avtive: {{object.keys(bars).length}}</div>
       <div *ngIf="object.keys(bars).length > 0" uk-dropdown="pos: bottom-justify; mode: click">
         <div class="uk-width-1-1 uk-margin-small-top">
           <div *ngFor="let item of bars | keyvalue" class="uk-text-small">
